@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latex</title>
+<meta charset="UTF-8">
+<title>Cool Text Box</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #1e1e2f;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .textbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 400px;
+  }
+
+  label {
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    border: 2px solid #444;
+    border-radius: 12px;
+    background: #2c2c3c;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  textarea:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 12px rgba(108, 99, 255, 0.5);
+  }
+
+  .char-count {
+    color: #aaa;
+    font-size: 0.85rem;
+    text-align: right;
+  }
+</style>
 </head>
 <body>
-    
+
+<div class="textbox-container">
+  <label for="plaintext">Enter your text:</label>
+  <textarea id="plaintext" maxlength="500" placeholder="Type something epic..."></textarea>
+  <div class="char-count" id="charCount">0 / 500</div>
+</div>
+
+<script>
+  const textarea = document.getElementById('plaintext');
+  const charCount = document.getElementById('charCount');
+
+  textarea.addEventListener('input', () => {
+    charCount.textContent = `${textarea.value.length} / ${textarea.maxLength}`;
+  });
+</script>
+
 </body>
 </html>
