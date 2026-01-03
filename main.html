@@ -7,21 +7,22 @@
   body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    padding-top: 50px;
     background: #1e1e2f;
     font-family: 'Segoe UI', sans-serif;
+    color: #fff;
   }
 
-  .textbox-container {
+  .textbox-container, .latex-preview-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 400px;
+    margin: 0 20px;
   }
 
   label {
-    color: #fff;
     font-size: 1rem;
     letter-spacing: 0.5px;
   }
@@ -50,6 +51,14 @@
     font-size: 0.85rem;
     text-align: right;
   }
+
+  .latex-preview {
+    background: #2c2c3c;
+    padding: 15px;
+    border-radius: 12px;
+    white-space: pre-wrap;
+    min-height: 150px;
+  }
 </style>
 </head>
 <body>
@@ -60,15 +69,17 @@
   <div class="char-count" id="charCount">0 / 500</div>
 </div>
 
+<div class="latex-preview-container">
+  <label>LaTeX Output:</label>
+  <div class="latex-preview" id="latexOutput"></div>
+</div>
+
 <script>
-  const textarea = document.getElementById('plaintext');
-  const charCount = document.getElementById('charCount');
+const textarea = document.getElementById('plaintext');
+const charCount = document.getElementById('charCount');
+const latexOutput = document.getElementById('latexOutput');
 
-  textarea.addEventListener('input', () => {
-    charCount.textContent = `${textarea.value.length} / ${textarea.maxLength}`;
-  });
-
-  function escapeLaTeX(str) {
+function escapeLaTeX(str) {
     const replacements = {
         '\\': '\\textbackslash{}',
         '{': '\\{',
@@ -85,16 +96,14 @@
 }
 
 function convertToLaTeX(plainText) {
-    // escape special characters
     const escapedText = escapeLaTeX(plainText);
-    // replace line breaks with LaTeX newlines
     return escapedText.replace(/\n/g, '\\\\\n');
 }
 
-
+// Merge both updates in a single listener
 textarea.addEventListener('input', () => {
-    const latex = convertToLaTeX(textarea.value);
-    console.log(latex); // or output somewhere in your page
+    charCount.textContent = `${textarea.value.length} / ${textarea.maxLength}`;
+    latexOutput.textContent = convertToLaTeX(textarea.value);
 });
 </script>
 
