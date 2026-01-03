@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    background: #1e1e2f;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+  }
+
+  .textbox-container, .latex-preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 400px;
+    margin: 0 20px;
+  }
+
+  label {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    border: 2px solid #444;
+    border-radius: 12px;
+    background: #2c2c3c;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  textarea:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 12px rgba(108, 99, 255, 0.5);
+  }
+
+  .char-count {
+    color: #aaa;
+    font-size: 0.85rem;
+    text-align: right;
+  }
+
+  .latex-preview {
+    background: #2c2c3c;
+    padding: 15px;
+    border-radius: 12px;
+    white-space: pre-wrap;
+    min-height: 150px;
+  }
